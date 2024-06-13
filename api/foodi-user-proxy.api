@@ -7,35 +7,41 @@ import (
 )
 
 info (
-	title: "foodi user proxy api"
-	desc: "api 入口文件"
+	title:  "foodi user proxy api"
+	desc:   "api 入口文件"
 	author: "odinfor"
-	email: "747069227@qq.com"
+	email:  "747069227@qq.com"
 )
 
 @server (
-	group: login
+	group:  login
 	prefix: /v1
 )
-service foodi-login-api {
+service foodi_user_proxy {
 	@doc "user login"
-	@handler Login
-	post /login(LoginRequest) returns(LoginReply)
+	@handler login
+	post /login (LoginRequest) returns (LoginReply)
 }
 
 @server (
-	jwt: Auth
-	group: user
+	jwt:    Auth
+	group:  user
 	prefix: /v1
 )
-service foodi-user-api {
+service foodi_user_proxy {
 	@doc "获取用户基础信息"
-	@handler User
-	get /user/baseInfo(UserBaseInfoRequest) returns(UserBaseInfoReply)
+	@handler userInfo
+	get /baseInfo (UserBaseInfoRequest) returns (UserBaseInfoReply)
 }
 
-service foodi-article-api {
+@server (
+	jwt:    Auth
+	group:  article
+	prefix: /v1
+)
+service foodi_user_proxy {
 	@doc "发布文章"
-	@handler Article
-	post /article/add(AddRequest) returns(AddReply)
+	@handler articleAction
+	post /add (AddRequest) returns (AddReply)
 }
+
