@@ -1,0 +1,41 @@
+syntax = "v1"
+
+import (
+	"foodi-account.api"
+	"foodi-user.api"
+	"foodi-article.api"
+)
+
+info (
+	title: "foodi user proxy api"
+	desc: "api 入口文件"
+	author: "odinfor"
+	email: "747069227@qq.com"
+)
+
+@server (
+	group: login
+	prefix: /v1
+)
+service foodi-login-api {
+	@doc "user login"
+	@handler Login
+	post /login(LoginRequest) returns(LoginReply)
+}
+
+@server (
+	jwt: Auth
+	group: user
+	prefix: /v1
+)
+service foodi-user-api {
+	@doc "获取用户基础信息"
+	@handler User
+	get /user/baseInfo(UserBaseInfoRequest) returns(UserBaseInfoReply)
+}
+
+service foodi-article-api {
+	@doc "发布文章"
+	@handler Article
+	post /article/add(AddRequest) returns(AddReply)
+}

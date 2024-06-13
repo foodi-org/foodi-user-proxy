@@ -1,0 +1,40 @@
+syntax = "v1"
+
+import "foodi-base.api"
+
+info(
+    title: "type title here"
+    desc: "type desc here"
+    author: "type author here"
+    email: "type email here"
+    version: "type version here"
+)
+
+type (
+    LoginRequest {
+        Phone string `json:"phone"`
+
+        Password string `json:"password,optional"`
+
+        // 验证码
+        Code int `json:"code,optional"`
+
+        // 登录方式,枚举值
+        // phone: 电话号码一键登录
+        // code: 手机验证码登录
+        // password: 手机账号绑定密码登录
+        Way int `json:"way,options=phone|code|password"`
+    }
+
+    LoginReply {
+        Base
+    }
+
+    RegisterRequest {
+        Username string `json:"username,optional"`
+        Password string `json:"password,optional"`
+        Phone string `json:"phone,optional"`
+        Code int `json:"code,optional"`
+        Way int `json:"way"`
+    }
+)

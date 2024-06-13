@@ -1,0 +1,21 @@
+syntax = "v1"
+
+info(
+    title: "type title here"
+    desc: "type desc here"
+    author: "type author here"
+    email: "type email here"
+    version: "type version here"
+)
+
+type (
+    UserBaseInfoRequest {
+        UID int64 `form:"uid"`
+    }
+
+    UserBaseInfoReply {
+        UID int64 `json:"uid"`
+        Name string `json:"name"`
+        Image string `json:"image"`
+    }
+)

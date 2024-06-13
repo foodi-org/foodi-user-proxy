@@ -1,0 +1,25 @@
+syntax = "v1"
+
+import "foodi-base.api"
+
+info(
+    title: "type title here"
+    desc: "type desc here"
+    author: "type author here"
+    email: "type email here"
+    version: "type version here"
+)
+
+type (
+    AddRequest {
+        Title string `json:"title"`
+        Context string `json:"context"`
+        Cover string `json:"cover"`
+        Resource []string `json:"resource"`
+        Uid int64 `json:"uid"`
+    }
+
+    AddReply {
+        Base
+    }
+)
