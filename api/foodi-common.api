@@ -9,11 +9,7 @@ info(
 )
 
 type (
-    Base {
-        Code int `json:"code"`
-        Message string `json:"message"`
-        Data interface{} `json:"data"`
+    CommonReply {
+        OK bool `json:"ok"`
     }
-
-    Nil {}
 )

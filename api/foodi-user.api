@@ -11,11 +11,55 @@ info(
 type (
     UserBaseInfoRequest {
         UID int64 `form:"uid"`
+
+        // 获取用户信息类型
+        // type = detail: 获取用户详细信息; 否则获取用户基础信息
+        Type string `form:"type"`
     }
 
+    // 用户基础信息
     UserBaseInfoReply {
         UID int64 `json:"uid"`
         Name string `json:"name"`
         Image string `json:"image"`
+    }
+
+    // 用户详细信息
+    UserDetailReply {
+        UID int64 `json:"uid"`
+        Name string `json:"name"`
+        Image string `json:"image"`
+        Gender string `json:"gender"`
+        Age int `json:"age"`
+        Birthday string `json:"birthday"`
+        Region string `json:"region"`
+        Nikename string `json:"nikename"`
+        Lv int `json:"lv"`
+        VIP int `json:"vip"`
+    }
+
+    UpdateImageRequest {
+        UID int64 `json:"uid"`
+        Image string `json:"image"`
+    }
+
+    UpdateBirthdayRequest {
+        UID int64 `json:"uid"`
+        Birthday string `json:"birthday"`
+    }
+
+    UpdateGenderRequest {
+        UID int64 `json:"uid"`
+        Gender string `json:"gender"`
+    }
+
+    UpdateNikenameRequest {
+        UID int64 `json:"uid"`
+        Nikename string `json:"nikename"`
+    }
+
+    UpdateRegionRequest {
+        UID int64 `json:"uid"`
+        Region string `json:"region"`
     }
 )

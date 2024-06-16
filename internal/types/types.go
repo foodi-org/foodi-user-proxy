@@ -19,6 +19,10 @@ type Base struct {
 	Data    interface{} `json:"data"`
 }
 
+type CommonReply struct {
+	OK bool `json:"ok"`
+}
+
 type LoginReply struct {
 	Base
 }
@@ -30,12 +34,40 @@ type LoginRequest struct {
 	Way      int    `json:"way,options=phone|code|password"`
 }
 
+type Nil struct {
+}
+
 type RegisterRequest struct {
 	Username string `json:"username,optional"`
 	Password string `json:"password,optional"`
 	Phone    string `json:"phone,optional"`
 	Code     int    `json:"code,optional"`
 	Way      int    `json:"way"`
+}
+
+type UpdateBirthdayRequest struct {
+	UID      int64  `json:"uid"`
+	Birthday string `json:"birthday"`
+}
+
+type UpdateGenderRequest struct {
+	UID    int64  `json:"uid"`
+	Gender string `json:"gender"`
+}
+
+type UpdateImageRequest struct {
+	UID   int64  `json:"uid"`
+	Image string `json:"image"`
+}
+
+type UpdateNikenameRequest struct {
+	UID      int64  `json:"uid"`
+	Nikename string `json:"nikename"`
+}
+
+type UpdateRegionRequest struct {
+	UID    int64  `json:"uid"`
+	Region string `json:"region"`
 }
 
 type UserBaseInfoReply struct {
@@ -45,5 +77,19 @@ type UserBaseInfoReply struct {
 }
 
 type UserBaseInfoRequest struct {
-	UID int64 `form:"uid"`
+	UID  int64  `form:"uid"`
+	Type string `form:"type"`
+}
+
+type UserDetailReply struct {
+	UID      int64  `json:"uid"`
+	Name     string `json:"name"`
+	Image    string `json:"image"`
+	Gender   string `json:"gender"`
+	Age      int    `json:"age"`
+	Birthday string `json:"birthday"`
+	Region   string `json:"region"`
+	Nikename string `json:"nikename"`
+	Lv       int    `json:"lv"`
+	VIP      int    `json:"vip"`
 }

@@ -4,6 +4,8 @@ import (
 	"foodi-account.api"
 	"foodi-user.api"
 	"foodi-article.api"
+	"foodi-common.api"
+	"foodi-base.api"
 )
 
 info (
@@ -31,7 +33,31 @@ service foodi_user_proxy {
 service foodi_user_proxy {
 	@doc "获取用户基础信息"
 	@handler userInfo
-	get /baseInfo (UserBaseInfoRequest) returns (UserBaseInfoReply)
+	get /user/baseInfo (UserBaseInfoRequest) returns (UserBaseInfoReply)
+
+	@doc "获取用户详细信息"
+	@handler userDetailInfo
+	get /user/detailInfo (UserBaseInfoRequest) returns (UserDetailReply)
+
+	@doc "更新用户头像"
+	@handler updateUserImage
+	put /user/updateImage (UpdateImageRequest) returns (Base)
+
+	@doc "更新用户性别"
+	@handler updateUserGender
+	put /user/gender (UpdateGenderRequest) returns (Base)
+
+	@doc "更新用户生日"
+	@handler updateUserBirthday
+	put /user/birthday (UpdateBirthdayRequest)
+
+	@doc "更新用户昵称"
+	@handler updayeUserNikename
+	put /user/nikename (UpdateNikenameRequest) returns (Base)
+
+	@doc "更新用户所在地域"
+	@handler updateUserRegion
+	put /user/region (UpdateRegionRequest) returns (Base)
 }
 
 @server (

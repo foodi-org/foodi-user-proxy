@@ -43,8 +43,44 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			{
 				// 获取用户基础信息
 				Method:  http.MethodGet,
-				Path:    "/baseInfo",
+				Path:    "/user/baseInfo",
 				Handler: user.UserInfoHandler(serverCtx),
+			},
+			{
+				// 更新用户生日
+				Method:  http.MethodPut,
+				Path:    "/user/birthday",
+				Handler: user.UpdateUserBirthdayHandler(serverCtx),
+			},
+			{
+				// 获取用户详细信息
+				Method:  http.MethodGet,
+				Path:    "/user/detailInfo",
+				Handler: user.UserDetailInfoHandler(serverCtx),
+			},
+			{
+				// 更新用户性别
+				Method:  http.MethodPut,
+				Path:    "/user/gender",
+				Handler: user.UpdateUserGenderHandler(serverCtx),
+			},
+			{
+				// 更新用户昵称
+				Method:  http.MethodPut,
+				Path:    "/user/nikename",
+				Handler: user.UpdayeUserNikenameHandler(serverCtx),
+			},
+			{
+				// 更新用户所在地域
+				Method:  http.MethodPut,
+				Path:    "/user/region",
+				Handler: user.UpdateUserRegionHandler(serverCtx),
+			},
+			{
+				// 更新用户头像
+				Method:  http.MethodPut,
+				Path:    "/user/updateImage",
+				Handler: user.UpdateUserImageHandler(serverCtx),
 			},
 		},
 		//rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
