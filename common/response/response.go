@@ -19,37 +19,11 @@ type (
 	}
 )
 
-// Response
-//
-//	@Description: 统一返回入口
-//	@param w ResponseWriter 对象
-//	@param data 返回数据
-//	@param err 返回错误
-func Response(w http.ResponseWriter, data interface{}, err error) {
-	if err != nil {
-		httpx.OkJson(w, ErrHandler(err))
-	} else {
-		httpx.OkJson(w, Body{
-			Code:    OK.Code,
-			Message: OK.Message,
-			Data:    data,
-		})
-	}
-}
-
 // Error
 //
 //	@Description: 实现 error 接口
 func (c *CodeErr) Error() string {
 	return c.Message
-}
-
-// ErrorResponse 返回给前端的数据
-func (c *CodeErr) ErrorResponse() CodeErr {
-	return CodeErr{
-		Code:    c.Code,
-		Message: c.Message,
-	}
 }
 
 // NewCodeErr
@@ -67,7 +41,7 @@ func NewCodeErr(code int, message string) error {
 
 // New
 //
-//	@Description: 提供 new 方法m任意地方传递参数返回 CodeError 类型的数据
+//	@Description: 提供 new 方法，任意地方传递参数返回 CodeError 类型的数据
 //	@param code
 //	@param message
 //	@return CodeErr
@@ -75,6 +49,44 @@ func New(code int, message string) CodeErr {
 	return CodeErr{
 		Code:    code,
 		Message: message,
+	}
+}
+
+// Response
+//
+//	@Description: 统一返回入口
+//	@param w ResponseWriter 对象
+//	@param data 返回数据
+//	@param err 返回错误
+func Response(w http.ResponseWriter, data interface{}, err error) {
+	if err != nil {
+		httpx.OkJson(w, ErrHandler(err))
+	} else {
+		httpx.OkJson(w, Body{
+			Code:    SuccessResponse.Code,
+			Message: SuccessResponse.Message,
+			Data:    data,
+		})
+	}
+}
+
+// BindFailResponse
+//
+//	@Description: 绑定参数失败时的返回
+//	@param err
+func BindFailResponse(w http.ResponseWriter, err error) {
+	if err != nil {
+		httpx.OkJson(w, Body{Code: BindParamError.Code, Message: err.Error()})
+	} else {
+		httpx.OkJson(w, Body{Code: BindParamError.Code, Message: BindParamError.Message})
+	}
+}
+
+// ErrorResponse 返回给前端的数据
+func (c *CodeErr) ErrorResponse() CodeErr {
+	return CodeErr{
+		Code:    c.Code,
+		Message: c.Message,
 	}
 }
 

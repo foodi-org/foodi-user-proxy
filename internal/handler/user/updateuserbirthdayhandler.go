@@ -15,18 +15,12 @@ func UpdateUserBirthdayHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.UpdateBirthdayRequest
 		if err := httpx.Parse(r, &req); err != nil {
-			//httpx.ErrorCtx(r.Context(), w, err)
-			response.Response(w, nil, err) // 统一错误返回, todo 添加到template
+			response.BindFailResponse(w, err) // 统一错误返回, todo 添加到template
 			return
 		}
 
 		l := user.NewUpdateUserBirthdayLogic(r.Context(), svcCtx)
 		err := l.UpdateUserBirthday(&req)
-		//if err != nil {
-		//	httpx.ErrorCtx(r.Context(), w, err)
-		//} else {
-		//	httpx.OkJsonCtx(r.Context(), w, resp)
-		//}
 		response.Response(w, nil, err) // 统一错误返回, todo 添加到template
 	}
 }
