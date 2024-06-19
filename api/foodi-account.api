@@ -20,14 +20,17 @@ type (
         Code int `json:"code,optional"`
 
         // 登录方式,枚举值
-        // phone: 电话号码一键登录
-        // code: 手机验证码登录
-        // password: 手机账号绑定密码登录
-        Way int `json:"way,options=phone|code|password"`
+        // 0: 电话号码一键登录
+        // 1: 手机验证码登录
+        // 3: 手机账号绑定密码登录
+        LoginType int `json:"loginType,options=0|1|3"`
+
+        // 占位符长度
+        Length int `json:"length,optional"`
     }
 
     LoginReply {
-        Base
+        Token string `json:"token"`
     }
 
     RegisterRequest {

@@ -2,6 +2,7 @@ package login
 
 import (
 	"context"
+	"github.com/foodi-org/foodi-user-proxy/internal/handler/pkg/AES"
 
 	"github.com/foodi-org/foodi-user-proxy/internal/svc"
 	"github.com/foodi-org/foodi-user-proxy/internal/types"
@@ -26,6 +27,14 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 
 func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginReply, err error) {
 	// todo: add your logic here and delete this line
+
+	var password string
+	if req.Password != "" {
+		password, err = AES.DecryptAES(req.Password, req.Length)
+		if err != nil {
+			return nil, err
+		}
+	}
 
 	return
 }

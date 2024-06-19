@@ -24,14 +24,15 @@ type CommonReply struct {
 }
 
 type LoginReply struct {
-	Base
+	Token string `json:"token"`
 }
 
 type LoginRequest struct {
-	Phone    string `json:"phone"`
-	Password string `json:"password,optional"`
-	Code     int    `json:"code,optional"`
-	Way      int    `json:"way,options=phone|code|password"`
+	Phone     string `json:"phone"`
+	Password  string `json:"password,optional"`
+	Code      int    `json:"code,optional"`
+	LoginType int    `json:"loginType,options=0|1|3"`
+	Length    int    `json:"length,optional"`
 }
 
 type Nil struct {
