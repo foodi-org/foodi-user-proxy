@@ -23,4 +23,6 @@ go.work.sum
 
 .idea
 
+*.log
+
 go.sum

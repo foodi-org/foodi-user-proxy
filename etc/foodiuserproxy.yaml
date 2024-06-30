@@ -1,6 +1,0 @@
-Name: foodi_user_proxy
-Host: 0.0.0.0
-Port: 8888
-Auth:
-  AccessSecret: foodi-user-access-secret
-  AccessExpire: 60

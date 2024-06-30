@@ -1,0 +1,10 @@
+UnmarshalKey: foodi-dev/foodi-user-proxy # consul 配置文件 key
+Consul:
+  Host: 8.134.206.241:8500 # consul 节点列表
+  Token: "" # 集群开启ACL后需要配置
+  Key: foodi-user-proxy.api # 注册到consul的key
+  Meta:
+    Protocol: http
+  Tag: # 注册到 consul 的标签,多个以逗号隔开
+    - foodi-user-proxy
+    - api
