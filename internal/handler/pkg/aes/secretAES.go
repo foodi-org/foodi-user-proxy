@@ -1,11 +1,11 @@
-package AES
+package aes
 
 import (
 	"crypto/aes"
 	"encoding/hex"
 )
 
-// AES 简单对称加密
+// aes 简单对称加密
 // 主要提供用户登录账号密码加密传输.请保证前后端使用相同秘钥key
 
 const (
@@ -27,7 +27,7 @@ func EncryptAES(plaintext string) (string, int, error) {
 		length int
 	)
 
-	// AES-CBC 进行加密的数据的长度必须是 16 的倍数，对长度不符的进行+ “0” 补位
+	// aes-CBC 进行加密的数据的长度必须是 16 的倍数，对长度不符的进行+ “0” 补位
 	if len(plaintext)%16 != 0 {
 		length = 16 - (len(plaintext) % 16)
 		for i := 0; i < length; i++ {

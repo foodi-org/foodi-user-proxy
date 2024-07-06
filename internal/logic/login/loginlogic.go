@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/foodi-org/foodi-user-service/client/account"
-	foodi_user_service "github.com/foodi-org/foodi-user-service/pb/github.com/foodi-org/foodi-user-service"
+	"github.com/foodi-org/foodi-user-service/pb/github.com/foodi-org/foodi-user-service"
 
 	"github.com/foodi-org/foodi-user-proxy/internal/svc"
 	"github.com/foodi-org/foodi-user-proxy/internal/types"
@@ -32,7 +32,7 @@ func (l *LoginLogic) Login(req *types.LoginRequest) (resp *types.LoginReply, err
 
 	var password string
 	//if req.Password != "" {
-	//	password, err = AES.DecryptAES(req.Password, req.Length)
+	//	password, err = aes.DecryptAES(req.Password, req.Length)
 	//	if err != nil {
 	//		return nil, err
 	//	}
