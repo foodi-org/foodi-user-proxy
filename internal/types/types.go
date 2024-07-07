@@ -23,27 +23,42 @@ type CommonReply struct {
 	OK bool `json:"ok"`
 }
 
+type JwtTokenRequest struct {
+}
+
+type JwtTokenResponse struct {
+	Token        string `json:"token"`
+	Expire       int64  `json:"expire"`
+	RefreshAfter int64  `json:"refreshAfter"`
+}
+
 type LoginReply struct {
 	Token string `json:"token"`
 }
 
 type LoginRequest struct {
-	Phone     string `json:"phone"`
-	Password  string `json:"password,optional"`
-	Code      int    `json:"code,optional"`
-	LoginType int    `json:"loginType,options=0|1|3"`
-	Length    int    `json:"length,optional"`
+	Phone    int64  `json:"phone"`
+	Password string `json:"password,optional"`
+	Code     string `json:"code,optional"`
+	Type     int    `json:"type,options=0|1|2"`
+	Length   int    `json:"length,optional"`
+	Laws     bool   `json:"laws"`
 }
 
 type Nil struct {
 }
 
+type RegisterReply struct {
+	Token string `json:"token"`
+	Uid   int64  `json:"uid"`
+}
+
 type RegisterRequest struct {
-	Username string `json:"username,optional"`
-	Password string `json:"password,optional"`
-	Phone    string `json:"phone,optional"`
-	Code     int    `json:"code,optional"`
-	Way      int    `json:"way"`
+	Phone        int64  `json:"phone"`
+	Code         string `json:"code,optional"`
+	Password     string `json:"password,optional"`
+	RegisterType int    `json:"registerType,options=0|1|2"`
+	UserType     int    `json:"userType,options=0|10|20"`
 }
 
 type UpdateBirthdayRequest struct {

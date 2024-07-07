@@ -4,8 +4,8 @@ package handler
 import (
 	"net/http"
 
+	account "github.com/foodi-org/foodi-user-proxy/internal/handler/account"
 	article "github.com/foodi-org/foodi-user-proxy/internal/handler/article"
-	login "github.com/foodi-org/foodi-user-proxy/internal/handler/login"
 	user "github.com/foodi-org/foodi-user-proxy/internal/handler/user"
 	"github.com/foodi-org/foodi-user-proxy/internal/svc"
 
@@ -16,6 +16,30 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
+				// user login
+				Method:  http.MethodPost,
+				Path:    "/login",
+				Handler: account.LoginHandler(serverCtx),
+			},
+			{
+				// user register
+				Method:  http.MethodPost,
+				Path:    "/path",
+				Handler: account.RegisterHandler(serverCtx),
+			},
+			{
+				// get user token
+				Method:  http.MethodPost,
+				Path:    "/user/token",
+				Handler: account.JwtHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/v1"),
+	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
 				// 发布文章
 				Method:  http.MethodPost,
 				Path:    "/add",
@@ -23,18 +47,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 			},
 		},
 		rest.WithJwt(serverCtx.Config.Auth.AccessSecret),
-		rest.WithPrefix("/v1"),
-	)
-
-	server.AddRoutes(
-		[]rest.Route{
-			{
-				// user login
-				Method:  http.MethodPost,
-				Path:    "/login",
-				Handler: login.LoginHandler(serverCtx),
-			},
-		},
 		rest.WithPrefix("/v1"),
 	)
 

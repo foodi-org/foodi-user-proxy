@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/foodi-org/foodi-user-proxy/internal/handler/pkg/pkgconsul"
+	"github.com/foodi-org/foodi-user-proxy/internal/pkg/pkgconsul"
 	"github.com/zeromicro/go-zero/rest"
 	"github.com/zeromicro/go-zero/zrpc"
 	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"

@@ -6,6 +6,7 @@ import (
 	"foodi-article.api"
 	"foodi-common.api"
 	"foodi-base.api"
+	"jwt.api"
 )
 
 info (
@@ -16,13 +17,21 @@ info (
 )
 
 @server (
-	group:  login
+	group:  account
 	prefix: /v1
 )
 service foodi_user_proxy {
+	@doc "get user token"
+	@handler jwt
+	post /user/token (JwtTokenRequest) returns (JwtTokenResponse)
+
 	@doc "user login"
 	@handler login
 	post /login (LoginRequest) returns (LoginReply)
+
+	@doc "user register"
+	@handler register
+	post /path (RegisterRequest) returns (RegisterReply)
 }
 
 @server (
