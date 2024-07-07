@@ -3,7 +3,7 @@ module github.com/foodi-org/foodi-user-proxy
 go 1.22.3
 
 require (
-	github.com/foodi-org/foodi-user-service v0.0.0-20240706140932-2a43e4fc612c
+	github.com/foodi-org/foodi-user-service v0.0.0-20240707075559-bd34548f19c6
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/hashicorp/consul/api v1.29.1
 	github.com/zeromicro/go-zero v1.6.6

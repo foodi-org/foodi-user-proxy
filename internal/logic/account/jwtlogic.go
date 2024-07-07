@@ -11,11 +11,13 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type JwtLogic struct {
-	logx.Logger
-	ctx    context.Context
-	svcCtx *svc.ServiceContext
-}
+type (
+	JwtLogic struct {
+		logx.Logger
+		ctx    context.Context
+		svcCtx *svc.ServiceContext
+	}
+)
 
 // get user token
 func NewJwtLogic(ctx context.Context, svcCtx *svc.ServiceContext) *JwtLogic {
