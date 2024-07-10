@@ -24,6 +24,7 @@ type CommonReply struct {
 }
 
 type JwtTokenRequest struct {
+	Uid int64 `json:"uid"`
 }
 
 type JwtTokenResponse struct {
@@ -37,12 +38,13 @@ type LoginReply struct {
 }
 
 type LoginRequest struct {
-	Phone    int64  `json:"phone"`
-	Password string `json:"password,optional"`
-	Code     string `json:"code,optional"`
-	Type     int    `json:"type,options=0|1|2"`
-	Length   int    `json:"length,optional"`
-	Laws     bool   `json:"laws"`
+	Phone        int64  `json:"phone"`
+	Password     string `json:"password,optional"`
+	Code         string `json:"code,optional"`
+	RegisterType int    `json:"register,options=0|1|2"`
+	AccountType  int    `json:"accountType,option=0|1|2"`
+	Length       int    `json:"length,optional"`
+	Laws         bool   `json:"laws"`
 }
 
 type Nil struct {

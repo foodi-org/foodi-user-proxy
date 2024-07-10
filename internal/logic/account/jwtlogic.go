@@ -32,7 +32,14 @@ func (j *JwtLogic) Jwt(req *types.JwtTokenRequest) (resp *types.JwtTokenResponse
 	var accessExpire = j.svcCtx.Config.Auth.AccessExpire
 
 	now := time.Now().Unix()
-	accessToken, err := j.GenToken(now, j.svcCtx.Config.Auth.AccessSecret, nil, accessExpire)
+	accessToken, err := j.GenToken(
+		now,
+		j.svcCtx.Config.Auth.AccessSecret,
+		map[string]interface{}{
+			"uid": req.Uid,
+		},
+		accessExpire,
+	)
 	if err != nil {
 		return nil, err
 	}

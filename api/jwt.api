@@ -8,7 +8,9 @@ info(
     version: "type version here"
 )
 
-type JwtTokenRequest {}
+type JwtTokenRequest {
+    Uid int64 `json:"uid"`
+}
 
 type JwtTokenResponse {
     Token string `json:"token"`

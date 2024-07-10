@@ -24,7 +24,13 @@ type (
         // 0: 电话号码一键登录
         // 1: 手机验证码登录
         // 2: 手机账号绑定密码登录
-        Type int `json:"type,options=0|1|2"`
+        RegisterType int `json:"register,options=0|1|2"`
+
+        // 用户账号类型
+        // 0: 普通消费用户
+        // 1: 商家用户
+        // 2: 配送骑手用户
+        AccountType int `json:"accountType,option=0|1|2"`
 
         // 占位符长度, laws = false 时生效, 告知 service 密码补位长度
         // 加密方式请与service保持一致
